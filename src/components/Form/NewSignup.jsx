@@ -17,7 +17,9 @@ import axios from "axios";
 import profileImage from "../../assets/images/profile.jpg";
 import { __checkUsername, __checkNickname } from "../../redux/modules/user";
 import { __logout, logout } from "../../redux/modules/user";
-import imageCompression from "browser-image-compression";
+
+
+
 
 
 
@@ -50,23 +52,6 @@ export default function VerticalLinearStepper() {
     const [formData] = useState(new FormData())
 
     // Event Handler
-    // 이미지 리사이징
-    const actionImgCompress = async (fileSrc) => {
-        console.log("압축 시작");
-    
-        const options = {
-          maxSizeMB: 0.05,
-          maxWidthOrHeight: 428,
-          useWebWorker: true,
-        };
-        try {
-          // 압축 결과
-          const compressedFile = await imageCompression(fileSrc, options);
-          
-        } catch (error) {
-          console.log(error);
-        }
-      };
     // Img Upload hadler
     const inputRef = useRef(null);
     const onUploadImg = (fileBlob) => {
@@ -78,14 +63,13 @@ export default function VerticalLinearStepper() {
 
         const reader = new FileReader();
         reader.readAsDataURL(fileBlob);
-        actionImgCompress(fileBlob)
         return new Promise((resolve) => {
             reader.onload = () => {
                 setImageUrl(reader.result);
                 resolve();
             };
         });
-        
+
     };
 
 
