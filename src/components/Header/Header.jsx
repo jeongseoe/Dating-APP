@@ -43,7 +43,7 @@ const Header = () => {
 
   useEffect(() => {
     dispatch(__getUser());
-  }, [__getUser])
+  }, [])
 
   return (
     <HeaderContainer>
@@ -154,6 +154,10 @@ const LogoImg = styled.div`
   margin-top: 8px;
   height: 55px;
   filter: invert(91%) sepia(12%) saturate(205%) hue-rotate(248deg) brightness(103%) contrast(94%);
+  img{
+    max-width: 70px;
+    max-height: 50px;
+  }
 `
 
 const Title = styled.div`
@@ -163,7 +167,9 @@ const Title = styled.div`
   margin:3px auto 3px auto ; 
   img{ 
     width: 120px;
-    height: 100%; }
+    height: 100%;
+    max-height: 64px;
+    }
 `
 const UserSet = styled.div`
     display: flex;

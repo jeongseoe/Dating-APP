@@ -164,7 +164,7 @@ function GuideDeck() {
               <h2>새로운 사람을 만나러 가 볼까요?</h2>
               <div>
                 <ModalButton1 onClick={() => {navigate(`/signup`);}}>회원 가입 하러 가기</ModalButton1>
-                <ModalButton2 onClick={() => {setOpen(false)}}>닫기</ModalButton2>
+                <ModalButton2 onClick={() => {navigate(`/login`);}}>이미 회원이신가요 ?</ModalButton2>
               </div>
             </BoxContainer>
           </Box>

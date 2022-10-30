@@ -37,9 +37,7 @@ function GuideCard({ i, x, y, rot, scale, trans, bind, objs}) {
         >
           <div className="CardContainer">
 
-            <div
-              className="Cardimage"
-              style={{ backgroundImage: `url(${imageUrl})`}}></div>
+          <img className="Cardimage" src={imageUrl} loading="lazy" alt=""></img>
             <h2 style={{marginLeft:"10px"}}>{nickname},</h2>
             <h2>{age}</h2>
 
@@ -116,6 +114,9 @@ justify-content: center;
   background-repeat: no-repeat;
   max-height: 570px;
   height: 330px;
+  max-height: 330px;
+  width:300px;
+  max-width:300px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
  
