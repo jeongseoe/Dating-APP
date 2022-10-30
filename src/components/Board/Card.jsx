@@ -49,7 +49,7 @@ const Card = ({ item }) => {
     return (
         <>
             <Item onClick={() => validation()}>
-                <Image src={item?.imageUrl} alt="" />
+                <Image loading="lazy" src={item?.imageUrl} alt="" />
 
                 <Container>
                     <Title>{item?.title}</Title>

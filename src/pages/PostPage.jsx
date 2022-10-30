@@ -17,7 +17,7 @@ import Category from "../components/Board/Category";
 import Header from "../components/Header/Header";
 import image from "../assets/images/배경화면으로.jpg"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-
+import imageCompression from "browser-image-compression";
 
 const PostPage = () => {
   let inputRef;
@@ -30,15 +30,35 @@ const PostPage = () => {
   const [imageUrl, setImage] = useState([]);
   const [category, setCategory] = useState("")
 
+  //이미지 리사이징
+  const actionImgCompress = async (fileSrc) => {
+    console.log("압축 시작");
+
+    const options = {
+      maxSizeMB: 0.05,
+      maxWidthOrHeight: 428,
+      useWebWorker: true,
+    };
+    try {
+      // 압축 결과
+      const compressedFile = await imageCompression(fileSrc, options);
+
+    
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //이미지 업로드 핸들
   const handleAddImages = (event) => {
     const imageLists = event.target.files;
     let imageUrlLists = [...imageUrl];
-
+    
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
       imageUrlLists.push(currentImageUrl);
       window.URL.revokeObjectURL(imageLists[i]);
+      actionImgCompress(imageLists[i])
       formData.append("imageUrl", imageLists[i]);
     }
     // 이미지 최대 5개 까지만
@@ -60,6 +80,8 @@ const PostPage = () => {
     return imageUrl.length !== 0 && content !== "" && title !== "" && category !== "";
   }
 
+
+  // 등록
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
 
@@ -94,7 +116,6 @@ const PostPage = () => {
       // 서버에서 받은 에러 메시지 출력
       window.alert("오류발생!" + "😭");
     }
-
   }, [canSubmit]);
 
   // 로그인 유무 판단 후 2초뒤 로그인 페이지로 보냄

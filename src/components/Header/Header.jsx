@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { __logout, logout } from "../../redux/modules/user";
 import useDetectClose from "./useDetectClose";
@@ -27,9 +26,7 @@ const Header = () => {
   };
 
   const token = localStorage.getItem('RefreshToken')
-  //object-fit : cover 이미지 설정시 사용해보기
-
-
+  
   const { user, isLoding, error } = useSelector((state) => state.user);
 
 
@@ -51,13 +48,13 @@ const Header = () => {
         {token === null ? <LogoImg><img src={Offlogo} alt="로그인 안된상태" /></LogoImg>
           : <LogoImg><img src={Onlogo} alt="로그인 된상태" /></LogoImg>}
         <Title onClick={() => { navigate('/') }}>
-          <img src={purple} alt="로고" />
+          <img loading="lazy" src={purple} alt="로고" />
         </Title>
         <UserSet >
           <DropDownContainer>
             <DropdownBtn onClick={myPageHandler} ref={myPageRef}>
               {token === null ? <img src={profile} alt="프로필" />
-                : <img src={userData?.imageUrl} alt="프로필" />}
+                : <img loading="lazy" src={userData?.imageUrl} alt="프로필" />}
 
             </DropdownBtn>
             <Menu isDropped={myPageIsOpen}>
