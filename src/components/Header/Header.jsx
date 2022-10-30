@@ -6,10 +6,10 @@ import { __logout, logout } from "../../redux/modules/user";
 import useDetectClose from "./useDetectClose";
 import { __getUser } from "../../redux/modules/signup";
 import profile from "../../assets/images/profile.jpg";
-import logo from "../../assets/images/perple.jpg";
+import logo from "../../assets/images/perple2.jpg";
 import Onlogo from "../../assets/images/On 소문자.svg";
 import Offlogo from "../../assets/images/Off 소문자.svg";
-import purple from "../../assets/images/제목으로.png"
+import purple from "../../assets/images/제목으로2.png"
 
 const Header = () => {
   const dispatch = useDispatch();

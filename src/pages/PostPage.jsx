@@ -29,36 +29,30 @@ const PostPage = () => {
   const [content, setContent] = useState("");
   const [imageUrl, setImage] = useState([]);
   const [category, setCategory] = useState("")
-
-  //이미지 리사이징
-  const actionImgCompress = async (fileSrc) => {
-    console.log("압축 시작");
-
-    const options = {
-      maxSizeMB: 0.05,
-      maxWidthOrHeight: 428,
-      useWebWorker: true,
-    };
-    try {
-      // 압축 결과
-      const compressedFile = await imageCompression(fileSrc, options);
-
-    
-    } catch (error) {
-      console.log(error);
-    }
+  
+  // 리사이징 옵션
+  const options = {
+    maxSizeMB: 0.5,
+    maxWidthOrHeight: 428,
+    useWebWorker: true,
   };
 
   //이미지 업로드 핸들
-  const handleAddImages = (event) => {
+  const handleAddImages = async (event) => {
     const imageLists = event.target.files;
     let imageUrlLists = [...imageUrl];
     
     for (let i = 0; i < imageLists.length; i++) {
-      const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      imageUrlLists.push(currentImageUrl);
+      try{
+        const compressedFile = await imageCompression(imageLists[i], options)
+        const currentImageUrl = URL.createObjectURL(compressedFile);
+        imageUrlLists.push(currentImageUrl);
+      } catch (error) {
+        window.alert(
+          "이미지 업로드에 오류가 있어요!"
+        )
+      }
       window.URL.revokeObjectURL(imageLists[i]);
-      actionImgCompress(imageLists[i])
       formData.append("imageUrl", imageLists[i]);
     }
     // 이미지 최대 5개 까지만
@@ -66,7 +60,6 @@ const PostPage = () => {
       window.alert("이미지는 최대 5개까지만 가능합니다😭")
       imageUrlLists = imageUrlLists.slice(0, 5);
     }
-
     setImage(imageUrlLists);
   };
 
