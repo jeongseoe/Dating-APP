@@ -5,7 +5,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { __getUser } from "../../redux/modules/signup";
-import logo from "../../assets/images/perple.jpg";
+import logo from "../../assets/images/perple2.jpg";
 
 
 const KakaoAddSignup = () => {
