@@ -9,7 +9,6 @@ import LikeMeCard from "./LikeMeCard";
 import LoveweCard from "./LoveweCard";
 import ProfileEditModal from "./profileModal/ProfileEditModal"
 import useProfileOnClickOutside from "./profileModal/ProfileUseOnClickOutSide"
-import { __getMain } from "../../redux/modules/main";
 
 import {
     MypageBox, Myinfo, Profile, InfoBody, Age, MBTI, OneLine, ModifyBtn, SecondMypageBox, SecondMyinfo,
