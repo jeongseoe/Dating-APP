@@ -58,7 +58,7 @@ export default function VerticalLinearStepper() {
         formData.append('imageUrl', fileBlob);
 
         for (const keyValue of formData) {
-         
+
         };
 
         const reader = new FileReader();
@@ -1139,7 +1139,7 @@ const GenderSelect = styled.select`
   width:170px;
   height: 30px;
   border: none;
-  border-bottom:2px solid red;
+  border-bottom:2px solid #80036f;
   padding-left: 5px;
   display: flex;
   margin  : auto ;
